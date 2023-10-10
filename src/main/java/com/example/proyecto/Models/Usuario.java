@@ -5,9 +5,17 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "Usuario")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,17 +23,17 @@ public class Usuario {
 
     @Column(name = "Nombre")
     @NotNull
-    @Size(min= 3, max = 25)
+    @Size(min = 3, max = 25)
     private String usuarioNombre;
 
     @Column(name = "Apellido")
     @NotNull
     @Size(min = 3, max = 25)
     private String usuarioApellido;
-    @Column(name= "Edad")
+    @Column(name = "Edad")
     @NotNull
     private Integer usuarioEdad;
-    @Column(name= "Email")
+    @Column(name = "Email")
     @NotNull
     @Email(message = "El correo electrónico no es válido")
     private String usuarioEmail;
@@ -36,73 +44,12 @@ public class Usuario {
 
     @Column(name = "Password")
     @NotNull
-    @Pattern(regexp ="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-_.@#$%^&+=]).*$",
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-_.@#$%^&+=]).*$",
             message = "El password debe contener al menos una letra mayúscula, una letra minúscula, un dígito y un carácter especial")
+
     private String password;
 
-
-    public Usuario() {
-    }
-
-    public Usuario(long usuarioId, String usuarioNombre, String usuarioApellido, Integer usuarioEdad, String usuarioEmail, String nombreUsuario, String password) {
-        this.usuarioId = usuarioId;
-        this.usuarioNombre = usuarioNombre;
-        this.usuarioApellido = usuarioApellido;
-        this.usuarioEdad = usuarioEdad;
-        this.usuarioEmail = usuarioEmail;
-        this.nombreUsuario = nombreUsuario;
-        this.password = password;
-    }
-
-    public long getUsuarioId() {
-        return usuarioId;
-    }
-
-    public String getUsuarioNombre() {
-        return usuarioNombre;
-    }
-
-    public void setUsuarioNombre(String usuarioNombre) {
-        this.usuarioNombre = usuarioNombre;
-    }
-
-    public String getUsuarioApellido() {
-        return usuarioApellido;
-    }
-
-    public void setUsuarioApellido(String usuarioApellido) {
-        this.usuarioApellido = usuarioApellido;
-    }
-
-    public Integer getUsuarioEdad() {
-        return usuarioEdad;
-    }
-
-    public void setUsuarioEdad(Integer usuarioEdad) {
-        this.usuarioEdad = usuarioEdad;
-    }
-
-    public String getUsuarioEmail() {
-        return usuarioEmail;
-    }
-
-    public void setUsuarioEmail(String usuarioEmail) {
-        this.usuarioEmail = usuarioEmail;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    @OneToOne
+    @JoinColumn(name = "token")
+    private Token token;
 }

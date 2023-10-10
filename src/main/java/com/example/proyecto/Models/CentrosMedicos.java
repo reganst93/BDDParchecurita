@@ -48,20 +48,29 @@ public class CentrosMedicos {
     @JsonFormat(pattern = "HH:mm:ss")
     private Time horarioCierreSemana;
 
-    @Column(name = "Apertura sabado/domingo")
-    @NotNull
+    @Column(name = "Apertura sabado")
     @JsonFormat(pattern = "HH:mm:ss")
-    private Time horarioAperturaFinDeSemana;
+    private Time horarioAperturaSabado;
 
-    @Column(name = "CierreAp sabado/domingo")
-    @NotNull
+    @Column(name = "Cierre sabado")
     @JsonFormat(pattern = "HH:mm:ss")
-    private Time horarioCierreFinDeSemana;
+    private Time horarioCierreSabado;
+
+    @Column(name = "Apertura domingo")
+    @JsonFormat(pattern = "HH:mm:ss")
+    private Time horarioAperturaDomingo;
+
+    @Column(name = "Cierre domingo")
+    @JsonFormat(pattern = "HH:mm:ss")
+    private Time horarioCierreDomingo;
 
     @Column(name = "Telefonos")
-    @Min(900000000)
+    @Min(000000000)
     @Max(999999999)
-    private Integer telefonoCentros;
+    private Long telefonoCentros;
+
+    @Column(name = "imagen")
+    private String imagenCentroMedico;
 
     @OneToOne(mappedBy = "centrosMedicos")
     private ContactoOnline contactoOnline;

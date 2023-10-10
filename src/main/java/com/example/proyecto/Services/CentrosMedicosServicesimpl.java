@@ -53,8 +53,9 @@ public class CentrosMedicosServicesimpl implements CentrosMedicosServices {
             centrosMedicosSeleccionado.setDirecionesCentros(centrosMedicosActualizado.getDirecionesCentros());
             centrosMedicosSeleccionado.setHorarioAperturaSemana(centrosMedicosActualizado.getHorarioAperturaSemana());
             centrosMedicosSeleccionado.setHorarioCierreSemana(centrosMedicosActualizado.getHorarioCierreSemana());
-            centrosMedicosSeleccionado.setHorarioAperturaFinDeSemana(centrosMedicosActualizado.getHorarioAperturaFinDeSemana());
-            centrosMedicosSeleccionado.setHorarioAperturaFinDeSemana(centrosMedicosActualizado.getHorarioCierreFinDeSemana());
+            centrosMedicosSeleccionado.setHorarioAperturaSabado(centrosMedicosActualizado.getHorarioAperturaSabado());
+            centrosMedicosSeleccionado.setHorarioCierreSabado(centrosMedicosActualizado.getHorarioCierreDomingo());
+            centrosMedicosSeleccionado.setHorarioAperturaDomingo(centrosMedicosActualizado.getHorarioCierreDomingo());
             return centrosMedicosRepository.save(centrosMedicosActualizado);
         }else{
             System.out.println("El id indicado no es valido");
