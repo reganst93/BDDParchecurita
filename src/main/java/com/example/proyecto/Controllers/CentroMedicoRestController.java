@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/centromedico")
 public class CentroMedicoRestController {
@@ -34,7 +35,7 @@ public class CentroMedicoRestController {
         CentrosMedicos centrosMedicoEditado = centrosMedicosServices.editarCentroMedicoPorID(id,centrosMedicoActualizado);
         return centrosMedicoEditado;
     }
-    @DeleteMapping("/borrar")
+    @DeleteMapping("/borrar/{id}")
     public String borrarCursoPorId (@PathVariable Long id){
         centrosMedicosServices.centrosMedicosborrar(id);
         return "El centro medico a sido borrado exitosamente";
