@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/cdcentros")
 public class ClasificacionDeCentrosRestController {
@@ -36,7 +36,7 @@ public class ClasificacionDeCentrosRestController {
         ClasificacionDeCentros clasificacionDeCentrosEditado = clasificacionDeCentrosServices.editarClasificacionPorID(id,clasificacionDeCentrosActualizado);
         return clasificacionDeCentrosEditado;
     }
-    @DeleteMapping("borrar")
+    @DeleteMapping("borrar/{id}")
     public String borrarClasificacionPorID (@PathVariable Long id){
         clasificacionDeCentrosServices.buscarClasificacionPorId(id);
         return "La clasificacion del centro a sido borrada existosamente";
