@@ -50,7 +50,7 @@ public class CentrosMedicosServicesimpl implements CentrosMedicosServices {
             CentrosMedicos centrosMedicosSeleccionado = centrosMedicosRepository.findById(id).get();
             centrosMedicosSeleccionado.setNombreDelCentro(centrosMedicosActualizado.getNombreDelCentro());
             centrosMedicosSeleccionado.setComunaCentro(centrosMedicosActualizado.getComunaCentro());
-            centrosMedicosSeleccionado.setDirecionesCentros(centrosMedicosActualizado.getDirecionesCentros());
+            centrosMedicosSeleccionado.setDireccionesCentros(centrosMedicosActualizado.getDireccionesCentros());
             centrosMedicosSeleccionado.setHorarioAperturaSemana(centrosMedicosActualizado.getHorarioAperturaSemana());
             centrosMedicosSeleccionado.setHorarioCierreSemana(centrosMedicosActualizado.getHorarioCierreSemana());
             centrosMedicosSeleccionado.setHorarioAperturaSabado(centrosMedicosActualizado.getHorarioAperturaSabado());

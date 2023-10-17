@@ -1,5 +1,7 @@
 package com.example.proyecto.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
@@ -29,10 +31,11 @@ public class ContactoOnline {
 
     @Column(name= "Email")
     @Email(message = "El correo electrónico no es válido")
-    private String usuarioEmail;
+    private String contactoEmail;
 
     @OneToOne
     @JoinColumn(name = "centroMedico")
+    @JsonManagedReference
     private CentrosMedicos centrosMedicos;
 
 

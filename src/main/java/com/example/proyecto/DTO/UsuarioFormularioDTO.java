@@ -6,12 +6,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class UsuarioDTO implements Serializable {
-private String nombreUsuario;
-private String usuarioEmail;
-
+public class UsuarioFormularioDTO implements Serializable {
+    private String usuarioNombre;
+    private String usuarioApellido;
+    private String password;
 }

@@ -1,5 +1,6 @@
 package com.example.proyecto.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,7 @@ public class ClasificacionDeCentros {
     private String clasificacionTipoCentro;
 
     @ManyToMany(mappedBy = "TriageClasificacion")
+    @JsonBackReference
     private List<Triage> triages;
 
 

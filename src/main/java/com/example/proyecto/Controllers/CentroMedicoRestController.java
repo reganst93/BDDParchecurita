@@ -36,7 +36,7 @@ public class CentroMedicoRestController {
         return centrosMedicoEditado;
     }
     @DeleteMapping("/borrar/{id}")
-    public String borrarCursoPorId (@PathVariable Long id){
+    public String borrarCentroPorId (@PathVariable Long id){
         centrosMedicosServices.centrosMedicosborrar(id);
         return "El centro medico a sido borrado exitosamente";
     }

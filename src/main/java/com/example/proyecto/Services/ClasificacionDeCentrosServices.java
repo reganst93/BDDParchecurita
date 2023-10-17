@@ -13,6 +13,6 @@ public interface ClasificacionDeCentrosServices {
 
     ClasificacionDeCentros editarClasificacionPorID (Long id,ClasificacionDeCentros clasificacionDeCentrosActualizado);
 
-    void borrarCentros (Long id);
+    void clasificacionBorrar (Long id);
 
 }

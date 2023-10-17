@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/creadores")
 public class CreadoresRestController {
@@ -36,7 +36,7 @@ public class CreadoresRestController {
         Creadores creadorEditado = creadoresServices.editarCreadorPorId(id, creadorActualizado);
         return creadorEditado;
     }
-    @DeleteMapping("/borrar")
+    @DeleteMapping("/borrar/{id}")
     public String borrarCreadorPorId (@PathVariable Long id){
         creadoresServices.borrarCreador(id);
         return "El creador a sido borrado existosamente";

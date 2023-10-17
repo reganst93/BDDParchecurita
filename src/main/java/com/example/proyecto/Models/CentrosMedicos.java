@@ -1,5 +1,6 @@
 package com.example.proyecto.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -15,7 +16,7 @@ import java.sql.Time;
 import java.util.List;
 
 @Entity
-@Table(name = "Centros MEdicos")
+@Table(name = "Centros Medicos")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -36,7 +37,7 @@ public class CentrosMedicos {
 
     @Column(name = "Direccion")
     @NotNull
-    private String direcionesCentros;
+    private String direccionesCentros;
 
     @Column(name = "Apertura")
     @NotNull
@@ -73,6 +74,7 @@ public class CentrosMedicos {
     private String imagenCentroMedico;
 
     @OneToOne(mappedBy = "centrosMedicos")
+    @JsonBackReference
     private ContactoOnline contactoOnline;
 
 }

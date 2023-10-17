@@ -48,7 +48,7 @@ public class ClasificacionDeCentrosServicesimpl implements ClasificacionDeCentro
     }
 
     @Override
-    public void borrarCentros(Long id) {
-    clasificacionDeCentrosRepository.deleteById(id);
+    public void clasificacionBorrar (Long id){
+        clasificacionDeCentrosRepository.deleteById(id);
     }
 }

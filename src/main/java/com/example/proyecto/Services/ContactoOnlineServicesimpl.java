@@ -32,7 +32,19 @@ public class ContactoOnlineServicesimpl implements ContactoOnlineServices {
 
     @Override
     public ContactoOnline guardarContacto(ContactoOnline contactoOnlineNuevo) {
-        return contactoOnlineRepository.save(contactoOnlineNuevo);
+        ContactoOnline contactoOnlineExiste = contactoOnlineRepository.findByDominioWeb(contactoOnlineNuevo.getDominioWeb());
+        if (contactoOnlineExiste != null) {
+            System.out.println("El contacto online ya existe");
+            return null;
+        } else if (contactoOnlineRepository.findByRedSocialId(contactoOnlineNuevo.getRedSocialId()) != null) {
+            System.out.println("La red social ya existe");
+            return null;
+        } else if (contactoOnlineRepository.findByContactoEmail(contactoOnlineNuevo.getContactoEmail()) != null) {
+            System.out.println("El email de contacto ya existe");
+            return null;
+        } else {
+            return contactoOnlineRepository.save(contactoOnlineNuevo);
+        }
     }
 
     @Override
@@ -42,7 +54,7 @@ public class ContactoOnlineServicesimpl implements ContactoOnlineServices {
             ContactoOnline contactoOnlineSeleccionado = contactoOnlineRepository.findById(id).get();
             contactoOnlineSeleccionado.setDominioWeb(contactoOnlineActualizado.getDominioWeb());
             contactoOnlineSeleccionado.setRedSocialId(contactoOnlineActualizado.getRedSocialId());
-            contactoOnlineSeleccionado.setUsuarioEmail(contactoOnlineActualizado.getUsuarioEmail());
+            contactoOnlineSeleccionado.setContactoEmail(contactoOnlineActualizado.getContactoEmail());
             return contactoOnlineRepository.save(contactoOnlineActualizado);
         }else {
             System.out.println("El id entregado no es valido");

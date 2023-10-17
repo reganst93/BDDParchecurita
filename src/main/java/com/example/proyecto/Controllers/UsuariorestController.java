@@ -1,12 +1,15 @@
 package com.example.proyecto.Controllers;
 
+import com.example.proyecto.DTO.UsuarioDTO;
 import com.example.proyecto.Models.Usuario;
 import com.example.proyecto.Services.UsuarioServiceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/usuario")
 public class UsuariorestController {
@@ -14,9 +17,16 @@ public class UsuariorestController {
     UsuarioServiceimpl usuarioService;
 
     @GetMapping("/lista")
-    public List<Usuario> listaDeUsuarios(){
-        List<Usuario> listaMostrar = usuarioService.listaDeUsuarios();
-    return listaMostrar;
+    public List<UsuarioDTO> listaDeUsuario(){
+        List<Usuario> listaUsuarios = usuarioService.listaDeUsuarios();
+        List<UsuarioDTO> listaMostrar = listaUsuarios.stream()
+                .map(usuario -> {
+                    UsuarioDTO usuarioDTO = new UsuarioDTO();
+                    usuarioDTO.setNombreUsuario(usuario.getNombreUsuario());
+                    return usuarioDTO;
+                        })
+                .collect(Collectors.toList());
+        return listaMostrar;
     }
     @GetMapping("/{id}")
     public Usuario usuarioPorId (@PathVariable Long id){
@@ -34,7 +44,13 @@ public class UsuariorestController {
         Usuario usuarioEditado = usuarioService.editarUsuarioPorId(id,usuarioActualizado);
         return usuarioEditado;
    }
-   @DeleteMapping("/borrar")
+    @PutMapping("/ed/{email}")
+    public UsuarioDTO editarUsuarioPorEmail(@PathVariable String email, @RequestBody Usuario usuarioActualizadoe) {
+        UsuarioDTO usuarioEditado = usuarioService.editarUsuarioPorEmail(email,usuarioActualizadoe);
+        return usuarioEditado;
+    }
+
+    @DeleteMapping("/borrar/{id}")
     public String borrarCursoPorId (@PathVariable Long id){
         usuarioService.borrarUsuario(id);
         return "El Usuario a sido borrado exitosamente";

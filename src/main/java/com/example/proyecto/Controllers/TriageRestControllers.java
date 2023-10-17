@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/triage")
 public class TriageRestControllers {
@@ -33,7 +33,7 @@ public class TriageRestControllers {
         Triage triageEditado = triageservices.editarTriagePorId(id,triageActualizado);
         return triageEditado;
     }
-    @DeleteMapping("/borrar")
+    @DeleteMapping("/borrar/{id}")
     public String borrarTriagePorId (@PathVariable Long id){
         triageservices.borrarTriage(id);
         return "El triage a sido borrado exitosamente";

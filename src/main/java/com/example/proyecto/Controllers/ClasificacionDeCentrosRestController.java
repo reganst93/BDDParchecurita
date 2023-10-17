@@ -36,11 +36,10 @@ public class ClasificacionDeCentrosRestController {
         ClasificacionDeCentros clasificacionDeCentrosEditado = clasificacionDeCentrosServices.editarClasificacionPorID(id,clasificacionDeCentrosActualizado);
         return clasificacionDeCentrosEditado;
     }
-    @DeleteMapping("borrar/{id}")
-    public String borrarClasificacionPorID (@PathVariable Long id){
-        clasificacionDeCentrosServices.buscarClasificacionPorId(id);
-        return "La clasificacion del centro a sido borrada existosamente";
+    @DeleteMapping("/borrar/{id}")
+    public String borrarCentrosPorId (@PathVariable Long id){
+        clasificacionDeCentrosServices.clasificacionBorrar(id);
+        return "La Clasificacion a sido borrada exitosamente";
     }
-
 }
 

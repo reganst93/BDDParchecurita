@@ -1,5 +1,6 @@
 package com.example.proyecto.Services;
 
+import com.example.proyecto.DTO.UsuarioDTO;
 import com.example.proyecto.Models.Usuario;
 import com.example.proyecto.Repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,11 @@ public class UsuarioServiceimpl implements UsuarioService {
         if (usuarioNuevo.getUsuarioEdad() < 18) {
             System.out.println("El Usuario debe ser mayor a 18 años");
             return null;
-        } else if (usuarioRepository.findByUsuarioNombre(usuarioNuevo.getUsuarioNombre()) != null){
+        } else if (usuarioRepository.findByUsuarioNombre(usuarioNuevo.getUsuarioNombre()) != null) {
             System.out.println("El nombre de usuario ya esta en uso");
+            return null;
+        } else if (usuarioRepository.findByUsuarioEmail(usuarioNuevo.getUsuarioEmail()) != null){
+            System.out.println("El email ya existe");
             return null;
         }else {
             return usuarioRepository.save(usuarioNuevo);
@@ -58,6 +62,22 @@ public class UsuarioServiceimpl implements UsuarioService {
         }
 
 
+    }
+
+    @Override
+    public UsuarioDTO editarUsuarioPorEmail(String email, Usuario usuarioActualizadoe) {
+        Usuario usuarioSeleccionado = usuarioRepository.findByUsuarioEmail(email);
+        UsuarioDTO usuarioRespuesta = new UsuarioDTO();
+        usuarioRespuesta.setUsuarioEmail(usuarioSeleccionado.getUsuarioEmail());
+        if (usuarioSeleccionado != null){
+            usuarioSeleccionado.setUsuarioNombre(usuarioActualizadoe.getUsuarioNombre());
+            usuarioSeleccionado.setUsuarioApellido(usuarioActualizadoe.getUsuarioApellido());
+            usuarioRepository.save(usuarioSeleccionado);
+            return usuarioRespuesta;
+        }else {
+            System.out.println("El correo electronico proporcionado no se encuentra en la base de datos");
+            return null;
+        }
     }
 
     @Override

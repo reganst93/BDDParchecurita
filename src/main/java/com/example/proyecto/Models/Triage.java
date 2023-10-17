@@ -27,9 +27,6 @@ public class Triage {
     @Column (name = "Urgencia")
     @NotNull
     private String urgencia;
-    @Column (name = "x")
-    @NotNull
-    private String x;
 
     @ManyToMany
     @JoinTable(

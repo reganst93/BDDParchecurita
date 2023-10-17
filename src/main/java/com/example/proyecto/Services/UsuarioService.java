@@ -1,5 +1,6 @@
 package com.example.proyecto.Services;
 
+import com.example.proyecto.DTO.UsuarioDTO;
 import com.example.proyecto.Models.Usuario;
 
 import java.util.List;
@@ -13,6 +14,8 @@ public interface UsuarioService {
     Usuario guardarUsuario(Usuario usuarioNuevo);
 
     Usuario editarUsuarioPorId (Long id, Usuario usuarioActualizado);
+
+    UsuarioDTO editarUsuarioPorEmail(String email, Usuario usuarioActualizadoe);
 
     void borrarUsuario (Long id);
 
