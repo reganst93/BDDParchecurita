@@ -11,7 +11,7 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
-@Table(name = "Clasificacion de centros")
+@Table(name = "Clasificación de centros")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -30,6 +30,9 @@ public class ClasificacionDeCentros {
     @JsonBackReference
     private List<Triage> triages;
 
+    @OneToMany(mappedBy = "clasificacionDeCentros")
+    @JsonBackReference
+    private List<CentrosMedicos> centrosMedicos;
 
 
 

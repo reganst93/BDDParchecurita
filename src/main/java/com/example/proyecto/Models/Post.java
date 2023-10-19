@@ -36,7 +36,7 @@ public class Post {
     private Date fechaPost;
 
     @ManyToOne
-    @JoinColumn(name = "usuarioId") // Cambia "usuario" al nombre de la columna de la clave foránea en la tabla "Post".
+    @JoinColumn(name = "usuarioId")
     private Usuario usuario;
 
 

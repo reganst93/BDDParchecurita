@@ -1,5 +1,6 @@
 package com.example.proyecto.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ public class Triage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long triageId;
 
-    @Column (name = "Categoria")
+    @Column (name = "Categoría")
     @NotNull
     private String categoria;
     @Column (name = "Urgencia")
@@ -35,4 +36,10 @@ public class Triage {
             inverseJoinColumns = @JoinColumn(name = "clasificacion_id")
     )
     private List<ClasificacionDeCentros> TriageClasificacion;
+
+    @OneToMany(mappedBy = "triage")
+    @JsonBackReference
+    private List<CentrosMedicos> centrosMedicos;
+
+
 }

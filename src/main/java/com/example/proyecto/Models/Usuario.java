@@ -27,12 +27,12 @@ public class Usuario {
     private long usuarioId;
 
     @Column(name = "Nombre")
-    @NotNull
+
     @Size(min = 3, max = 25)
     private String usuarioNombre;
 
     @Column(name = "Apellido")
-    @NotNull
+
     @Size(min = 3, max = 25)
     private String usuarioApellido;
     @Column(name = "Edad")
@@ -42,13 +42,13 @@ public class Usuario {
     @NotNull
     @Email(message = "El correo electrónico no es válido")
     private String usuarioEmail;
-    @NotNull
+
     @Size(min = 6, max = 10)
     @Column(name = "Nombre de usuario")
     private String nombreUsuario;
 
     @Column(name = "Password")
-    @NotNull
+
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[-_.@#$%^&+=]).*$",
             message = "El password debe contener al menos una letra mayúscula, una letra minúscula, un dígito y un carácter especial")
 

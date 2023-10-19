@@ -13,5 +13,6 @@ import java.io.Serializable;
 public class UsuarioDTO implements Serializable {
 private String nombreUsuario;
 private String usuarioEmail;
+private Integer usuarioEdad;
 
 }

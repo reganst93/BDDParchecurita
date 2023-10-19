@@ -47,6 +47,27 @@ public class UsuarioServiceimpl implements UsuarioService {
     }
 
     @Override
+    public UsuarioDTO registrarUsuario(Usuario usuarioRegistrado) {
+        if (usuarioRegistrado.getUsuarioEdad() < 18) {
+            System.out.println("El Usuario debe ser mayor a 18 años");
+            return null;
+        } else if (usuarioRepository.findByUsuarioNombre(usuarioRegistrado.getNombreUsuario()) != null) {
+            System.out.println("El nombre de usuario ya está en uso");
+            return null;
+        } else if (usuarioRepository.findByUsuarioEmail(usuarioRegistrado.getUsuarioEmail()) != null) {
+            System.out.println("El email ya existe");
+            return null;
+        } else {
+            Usuario usuarioGuardado = usuarioRepository.save(usuarioRegistrado);
+            UsuarioDTO usuarioGuardadoDTO = new UsuarioDTO();
+            usuarioGuardadoDTO.setNombreUsuario(usuarioGuardado.getNombreUsuario());
+            usuarioGuardadoDTO.setUsuarioEmail(usuarioGuardado.getUsuarioEmail());
+            usuarioGuardadoDTO.setUsuarioEdad(usuarioGuardado.getUsuarioEdad());
+            return usuarioGuardadoDTO;
+        }
+    }
+
+        @Override
     public Usuario editarUsuarioPorId(Long id, Usuario usuarioActualizado) {
         boolean existe = usuarioRepository.existsById(id);
         if (existe) {

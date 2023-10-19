@@ -21,12 +21,12 @@ public class ContactoOnline {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long contactoOnlineId;
 
-    @Column (name = "Pagina web")
-    @URL (message = "La pagina web no es una URL Valida")
+    @Column (name = "Página web")
+    @URL (message = "La página web no es una URL válida")
     private String dominioWeb;
 
     @Column (name = "Red social")
-    @URL (message = "La url de la red social no es valida")
+    @URL (message = "La url de la red social no es válida")
     private String redSocialId;
 
     @Column(name= "Email")
@@ -34,7 +34,7 @@ public class ContactoOnline {
     private String contactoEmail;
 
     @OneToOne
-    @JoinColumn(name = "centroMedico")
+    @JoinColumn(name = "Centro Médico")
     @JsonManagedReference
     private CentrosMedicos centrosMedicos;
 

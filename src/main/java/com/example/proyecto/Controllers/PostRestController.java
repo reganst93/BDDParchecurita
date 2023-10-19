@@ -26,7 +26,7 @@ public class PostRestController {
         return postMostrar;
     }
 
-    @PostMapping("/nuevo")
+    @PostMapping("/post")
     public Post guardarNuevoPost (@RequestBody Post postNuevo){
         Post postParaGuardar = postServices.guardarPost(postNuevo);
         return postParaGuardar;

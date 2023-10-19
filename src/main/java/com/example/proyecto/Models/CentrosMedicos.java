@@ -13,10 +13,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Time;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
-@Table(name = "Centros Medicos")
+@Table(name = "Centros Médicos")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -35,7 +36,7 @@ public class CentrosMedicos {
     @NotNull
     private String comunaCentro;
 
-    @Column(name = "Direccion")
+    @Column(name = "Dirección")
     @NotNull
     private String direccionesCentros;
 
@@ -49,11 +50,11 @@ public class CentrosMedicos {
     @JsonFormat(pattern = "HH:mm:ss")
     private Time horarioCierreSemana;
 
-    @Column(name = "Apertura sabado")
+    @Column(name = "Apertura sábado")
     @JsonFormat(pattern = "HH:mm:ss")
     private Time horarioAperturaSabado;
 
-    @Column(name = "Cierre sabado")
+    @Column(name = "Cierre sábado")
     @JsonFormat(pattern = "HH:mm:ss")
     private Time horarioCierreSabado;
 
@@ -65,7 +66,7 @@ public class CentrosMedicos {
     @JsonFormat(pattern = "HH:mm:ss")
     private Time horarioCierreDomingo;
 
-    @Column(name = "Telefonos")
+    @Column(name = "Teléfonos")
     @Min(000000000)
     @Max(999999999)
     private Long telefonoCentros;
@@ -75,6 +76,15 @@ public class CentrosMedicos {
 
     @OneToOne(mappedBy = "centrosMedicos")
     @JsonBackReference
+    @JsonIgnore
     private ContactoOnline contactoOnline;
+
+    @ManyToOne
+    @JoinColumn(name = "Clasificación de centro")
+    private ClasificacionDeCentros clasificacionDeCentros;
+
+    @ManyToOne
+    @JoinColumn(name = "Tipos de Triage")
+    private Triage triage;
 
 }

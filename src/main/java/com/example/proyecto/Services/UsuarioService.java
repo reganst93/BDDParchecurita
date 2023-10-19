@@ -13,6 +13,9 @@ public interface UsuarioService {
 
     Usuario guardarUsuario(Usuario usuarioNuevo);
 
+    UsuarioDTO registrarUsuario ( Usuario usuarioRegistrado);
+
+
     Usuario editarUsuarioPorId (Long id, Usuario usuarioActualizado);
 
     UsuarioDTO editarUsuarioPorEmail(String email, Usuario usuarioActualizadoe);
